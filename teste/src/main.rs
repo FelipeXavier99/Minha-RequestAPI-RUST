@@ -8,7 +8,7 @@ error_chain!{
 } 
 
 fn main() -> Result<()> {
-   let cep = "88054-600";
+   let cep = " 88010-001";
     let url = format!(
         "https://viacep.com.br/ws/{}/json/", cep);
 
