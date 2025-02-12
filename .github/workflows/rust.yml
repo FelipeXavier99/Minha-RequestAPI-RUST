@@ -34,4 +34,7 @@ jobs:
 
       - name: Executar código principal
         working-directory: teste
-        run: cargo run
+        run: |
+          echo "===== INICIANDO EXECUÇÃO DO PROGRAMA ====="
+          cargo run
+          echo "===== FIM DA EXECUÇÃO ====="
