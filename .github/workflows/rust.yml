@@ -1,0 +1,32 @@
+name: Rust CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Instalar Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache do Cargo (opcional, melhora performance)
+        uses: Swatinem/rust-cache@v2
+
+      - name: Instalar dependências
+        run: cargo build --release
+
+      - name: Executar testes (se houver)
+        run: cargo test --verbose
+
+      - name: Executar código principal
+        run: cargo run
