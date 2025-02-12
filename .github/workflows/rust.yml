@@ -15,18 +15,23 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Instalar Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Cache do Cargo (opcional, melhora performance)
+      - name: Cache do Cargo (para acelerar builds futuros)
         uses: Swatinem/rust-cache@v2
 
-      - name: Instalar dependências
+      - name: Compilar o projeto
+        working-directory: teste
         run: cargo build --release
 
       - name: Executar testes (se houver)
+        working-directory: teste
         run: cargo test --verbose
 
       - name: Executar código principal
+        working-directory: teste
         run: cargo run
